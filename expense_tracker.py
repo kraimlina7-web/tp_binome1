@@ -34,7 +34,7 @@ def main():
         print("2. Afficher les depenses")
         print("3. Afficher le total")
         print("4. Quitter")
-
+        print("5. Show average")
         choice = input("Votre choix : ")
         if choice == "1":
             add_expense()
@@ -44,6 +44,8 @@ def main():
             show_total()
         elif choice == "4":
             print("Au revoir !")
+        elif choice == "5":
+            show_average()
         break
     else:
         print("Choix invalide.")
@@ -60,6 +62,3 @@ def show_average():
     average = total / len(expenses)
 
     print(f"Average expense: {average:.2f}")
-
-
-print("5. Show average")
