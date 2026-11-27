@@ -1,43 +1,53 @@
-taches = []
-def ajouter_tache():
-    t = input("Titre de la tâche : ")
-def afficher_taches():
-    if len(taches) == 0:
-        print("Aucune tâche enregistrée.")
-    else:
-        print("\n=== LISTE DES TACHES ===")
-        for i, t in enumerate(taches, start=1):
-            print(i, "-", t)
 
-def rechercher_tache():
-    mot = input("Mot-clé à rechercher : ")
-    trouve = False
+expenses = []
 
-    for i, t in enumerate(taches, start=1):
-        if mot.lower() in t.lower():
-            print(i, "-", t)
-            trouve = True
+def add_expense():
+    description = input("Description : ")
+    amount = float(input("Montant : "))
+    expenses.append({
+        "description": description,
+        "amount": amount
+    })
+    print("Depense ajoutee !")
 
-    if not trouve:
-        print("Aucune tâche trouvée.")
-print("Application mise à jour avec succès !")
-while True:
-    print("GESTION DES TACHES ")
-    print("1. Ajouter une tâche")
-    print("2. Afficher les tâches")
-    print("3. Rechercher une tâche")
-    print("0. Quitter")
 
-    choix = input("Votre choix : ")
+def show_expenses():
+    if not expenses:
+        print("Aucune depense enregistree.")
+        return
 
-    if choix == "1":
-        ajouter_tache()
-    elif choix == "2":
-        afficher_taches()
-    elif choix == "3":
-        rechercher_tache()
-    elif choix == "0":
-        print("Au revoir !")
-        break
-    else:
-        print("Choix invalide ")
+    for number, expense in enumerate(expenses, start=1):
+        print(f"{number}. {expense['description']} - "
+              f"{expense['amount']:.2f}")
+
+
+def show_total():
+    total = sum(item["amount"] for item in expenses)
+    print(f"Total : {total:.2f}")
+
+
+def main():
+    while True:
+        print("\n===== SUIVI DES DEPENSES =====")
+        print("1. Ajouter une depense")
+        print("2. Afficher les depenses")
+        print("3. Afficher le total")
+        print("4. Quitter")
+
+        choice = input("Votre choix : ")
+
+        if choice == "1":
+            add_expense()
+        elif choice == "2":
+            show_expenses()
+        elif choice == "3":
+            show_total()
+        elif choice == "4":
+            print("Au revoir !")
+            break
+        else:
+            print("Choix invalide.")
+
+
+if __name__ == "__main__":
+    main()
